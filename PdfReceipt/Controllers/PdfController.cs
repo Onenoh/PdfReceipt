@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PdfReceipt.Services;
 
 namespace PdfReceipt.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PdfController : Controller
+    public class PdfController : ControllerBase
     {
         private readonly PdfService _pdfService;
         public PdfController(PdfService pdfService)
