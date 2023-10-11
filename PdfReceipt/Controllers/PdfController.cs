@@ -4,7 +4,7 @@ using PdfReceipt.Services;
 
 namespace PdfReceipt.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pdf")]
     [ApiController]
     public class PdfController : ControllerBase
     {
@@ -15,11 +15,11 @@ namespace PdfReceipt.Controllers
         }
 
         [HttpPost]
-        [Route("GeneratePdf")]
+        [Route("generatePdf")]
         public IActionResult GeneratePdf([FromBody] string htmlContent)
         {
             byte[] pdfBytes = _pdfService.GeneratePdf(htmlContent);
-            return File(pdfBytes, "application/pdf");
+            return File(pdfBytes, "application/pdf", "receipt.pdf");
         }
     }
 }
