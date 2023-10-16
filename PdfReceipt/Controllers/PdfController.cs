@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PdfReceipt.Model;
 using PdfReceipt.Services;
+using System.Web;
 
 namespace PdfReceipt.Controllers
 {
@@ -14,10 +17,11 @@ namespace PdfReceipt.Controllers
             _pdfService = pdfService;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("generatePdf")]
-        public IActionResult GeneratePdf([FromBody] string htmlContent)
+        public IActionResult GeneratePdf([FromBody] HtmlRequest htmlContent)
         {
+            
             byte[] pdfBytes = _pdfService.GeneratePdf(htmlContent);
             return File(pdfBytes, "application/pdf", "receipt.pdf");
         }
